@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react"
 
@@ -33,17 +33,17 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link href="/signup">
+          <Link to="/auth/sign-up">
             <Button size="lg" className="group gap-2 rounded-full px-8 text-base">
               Analyze My Resume
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>
-          <Link href="#how-it-works">
+          <a href="#how-it-works">
             <Button variant="outline" size="lg" className="rounded-full px-8 text-base bg-transparent">
               See How It Works
             </Button>
-          </Link>
+          </a>
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground">

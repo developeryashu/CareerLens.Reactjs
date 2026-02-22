@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import { FileSearch, Github, Linkedin, Twitter } from "lucide-react"
 
 export function Footer() {
@@ -7,7 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
                 <FileSearch className="h-5 w-5 text-primary-foreground" />
               </div>
@@ -19,27 +19,27 @@ export function Footer() {
               AI-powered resume analysis to help you land your dream job. Get instant feedback and actionable insights.
             </p>
             <div className="mt-6 flex gap-4">
-              <Link
+              <a
                 href="#"
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#"
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="#"
                 className="text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -47,24 +47,24 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold">Product</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#features" className="text-muted-foreground transition-colors hover:text-foreground">
                   Features
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#pricing" className="text-muted-foreground transition-colors hover:text-foreground">
                   Pricing
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
                   Changelog
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
                   API
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -73,24 +73,24 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold">Company</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
                   About
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
                   Blog
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
                   Privacy
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <a href="#" className="text-muted-foreground transition-colors hover:text-foreground">
                   Terms
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

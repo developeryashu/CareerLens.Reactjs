@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check } from "lucide-react"
@@ -101,7 +101,7 @@ export function Pricing() {
                   ))}
                 </ul>
                 <div className="mt-8">
-                  <Link href="/signup">
+                  <Link to="/auth/sign-up">
                     <Button
                       className="w-full rounded-full"
                       variant={plan.popular ? "default" : "outline"}
