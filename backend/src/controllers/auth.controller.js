@@ -2,11 +2,16 @@ const bcrypt = require("bcryptjs")
 const User = require("../models/User")
 const { signAccessToken } = require("../utils/token")
 
-const cookieOptions = {
-  httpOnly: true,
-  sameSite: "lax",
-  secure: process.env.NODE_ENV === "production",
-  maxAge: 1000 * 60 * 60 * 24 * 7,
+function getCookieOptions() {
+  const isProduction = process.env.NODE_ENV === "production"
+
+  return {
+    httpOnly: true,
+    sameSite: isProduction ? "none" : "lax",
+    secure: isProduction,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    path: "/",
+  }
 }
 
 function normalizeUser(user) {
@@ -58,7 +63,7 @@ async function signUp(req, res, next) {
     })
 
     const token = signAccessToken(user._id.toString())
-    res.cookie("access_token", token, cookieOptions)
+    res.cookie("access_token", token, getCookieOptions())
 
     return res.status(201).json({
       message: "Account created successfully.",
@@ -89,7 +94,7 @@ async function signIn(req, res, next) {
     }
 
     const token = signAccessToken(user._id.toString())
-    res.cookie("access_token", token, cookieOptions)
+    res.cookie("access_token", token, getCookieOptions())
 
     return res.status(200).json({
       message: "Signed in successfully.",
@@ -107,9 +112,11 @@ async function getCurrentUser(req, res) {
 }
 
 async function signOut(req, res) {
+  const cookieOptions = getCookieOptions()
   res.clearCookie("access_token", {
     ...cookieOptions,
     maxAge: undefined,
+    expires: new Date(0),
   })
   return res.status(200).json({ message: "Signed out successfully." })
 }
