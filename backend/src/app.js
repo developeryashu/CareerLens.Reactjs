@@ -5,10 +5,24 @@ const authRoutes = require("./routes/auth.routes")
 const { errorHandler } = require("./middleware/error-handler")
 
 const app = express()
+const allowVercelPreviews = process.env.ALLOW_VERCEL_PREVIEWS === "true"
 const allowedOrigins = (process.env.CLIENT_URL || "")
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/$/, ""))
   .filter(Boolean)
+
+function isAllowedOrigin(origin) {
+  const normalizedOrigin = origin.replace(/\/$/, "")
+  if (allowedOrigins.includes(normalizedOrigin)) {
+    return true
+  }
+
+  if (allowVercelPreviews && /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(normalizedOrigin)) {
+    return true
+  }
+
+  return false
+}
 
 app.use(
   cors({
@@ -18,7 +32,7 @@ app.use(
         return callback(null, true)
       }
 
-      if (allowedOrigins.includes(origin)) {
+      if (isAllowedOrigin(origin)) {
         return callback(null, true)
       }
 
